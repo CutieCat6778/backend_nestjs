@@ -21,7 +21,8 @@ jobs:
     - uses: actions/setup-node@v2
       with:
         node-version: '14'
-        cache: 'npm'
+        cache: 'npm'    
         cache-dependency-path: package-lock.json
     - run: npm install
     - run: npm test
+    - run: npm run test:e2e

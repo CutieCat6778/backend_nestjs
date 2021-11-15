@@ -6,7 +6,6 @@ import { User } from './user.interface';
 export class UserService {
   findByName(name: string): User {
     const user: User = user_data.find((a) => a.name === name);
-    const handler: User = { name: null, age: null, sex: null };
-    return user ? user : handler;
+    return user ? user : undefined;
   }
 }
