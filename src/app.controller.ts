@@ -1,17 +1,27 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, NotAcceptableException, Param } from '@nestjs/common';
 import { AppService } from './app.service';
 
-@Controller('greetings')
+@Controller('')
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
   getHello(): string {
-    return this.appService.getHello();
+    const result = this.appService.getHello();
+    if (result) {
+      return result;
+    } else {
+      throw new NotAcceptableException();
+    }
   }
 
   @Get(':name')
   getHelloUser(@Param('name') name: string): string {
-    return this.appService.getHelloUser(name);
+    const result = this.appService.getHelloUser(name);
+    if (result) {
+      return result;
+    } else {
+      throw new NotAcceptableException();
+    }
   }
 }

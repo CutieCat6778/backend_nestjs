@@ -1,4 +1,4 @@
-import { Controller, Get, Param } from '@nestjs/common';
+import { Controller, Get, Param, NotFoundException } from '@nestjs/common';
 import { User } from './user.interface';
 import { UserService } from './user.service';
 
@@ -12,12 +12,7 @@ export class UserController {
     if (result) {
       return result;
     } else {
-      const nullRes: User = {
-        name: null,
-        age: null,
-        sex: null,
-      };
-      return nullRes;
+      throw new NotFoundException();
     }
   }
 }

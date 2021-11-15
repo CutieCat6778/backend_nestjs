@@ -1,5 +1,5 @@
 export interface User {
-  name: string | null;
-  age: number | null;
-  sex: boolean | null;
+  name: string;
+  age: number;
+  sex: boolean;
 }

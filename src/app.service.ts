@@ -6,6 +6,6 @@ export class AppService {
     return `Hello World!`;
   }
   getHelloUser(name: string): string {
-    return `Hello ${name}!`;
+    return name ? `Hello ${name}!` : this.getHello();
   }
 }

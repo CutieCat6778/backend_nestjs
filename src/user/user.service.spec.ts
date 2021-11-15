@@ -26,11 +26,7 @@ describe('UserService', () => {
       });
     });
     it('should return an null', () => {
-      expect(service.findByName(name2)).toMatchObject({
-        name: null,
-        age: null,
-        sex: null,
-      });
+      expect(service.findByName(name2)).toBe(undefined);
     });
   });
 });
