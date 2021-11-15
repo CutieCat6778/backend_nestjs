@@ -14,9 +14,15 @@ describe('AppController', () => {
     appController = app.get<AppController>(AppController);
   });
 
-  describe('root', () => {
+  describe('root_greetings', () => {
     it('should return "Hello World!"', () => {
       expect(appController.getHello()).toBe('Hello World!');
+    });
+  });
+  describe('root_greetings_params', () => {
+    const name = 'Thinh';
+    it(`should return "Hello ${name}!"`, () => {
+      expect(appController.getHelloUser(name)).toBe(`Hello ${name}!`);
     });
   });
 });
