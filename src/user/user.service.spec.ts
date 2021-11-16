@@ -15,18 +15,14 @@ describe('UserService', () => {
   });
 
   describe('find user data', () => {
-    const name = 'Thinh';
-    const name2 = 'Katarina';
+    const id = 1;
+    const id2 = 0;
 
     it('should return an Object', () => {
-      expect(service.findByName(name)).toMatchObject({
-        name: 'Thinh',
-        age: 15,
-        sex: true,
-      });
+      expect(service.findById(id)).toBeDefined();
     });
     it('should return an null', () => {
-      expect(service.findByName(name2)).toBe(undefined);
+      expect(service.findById(id2)).toBe(undefined);
     });
   });
 });

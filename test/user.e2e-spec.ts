@@ -16,13 +16,17 @@ describe('AppController (e2e)', () => {
   });
 
   it('/ (GET)', () => {
-    return request(app.getHttpServer()).get('/user/Thinh').expect(200).expect({
-      name: 'Thinh',
-      age: 15,
-      sex: true,
-    });
+    return request(app.getHttpServer())
+      .get('/user/id/779768457403170857')
+      .expect(200)
+      .expect({
+        id: 1,
+        name: 'Thinh',
+        age: 15,
+        sex: true,
+      });
   });
   it('/ (GET)', () => {
-    return request(app.getHttpServer()).get('/user/').expect(404);
+    return request(app.getHttpServer()).get('/user/id/0').expect(404);
   });
 });
