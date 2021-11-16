@@ -17,7 +17,9 @@ import { MongooseModule } from '@nestjs/mongoose';
       envFilePath: '.env',
     }),
     UserModule,
-    MongooseModule.forRoot(process.env.MONGO),
+    MongooseModule.forRoot(
+      'mongodb+srv://Developers:23072006@discordbot-trademark.p1wmj.mongodb.net/Guild?retryWrites=true&w=majority',
+    ),
   ],
   controllers: [AppController],
   providers: [AppService],
