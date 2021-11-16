@@ -1,20 +1,24 @@
 [
     {
+        "id": 1,
         "name": "Thinh",
         "age": 15,
         "sex": true
     },
     {
+        "id": 2,
         "name": "Alexa",
         "age": 12,
         "sex": false
     },
     {
+        "id": 3,
         "name": "Tom",
         "age": 18,
         "sex": true
     },
     {
+        "id": 4,
         "name": "Petra",
         "age": 10,
         "sex": false
