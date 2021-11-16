@@ -9,13 +9,15 @@ export class UserService {
   constructor(@InjectModel('Levels') private userModel: Model<UserDoc>) {}
 
   async getAll(): Promise<User[]> {
-    const catDocs = await this.userModel.find().exec();
-    return catDocs.map((doc) => ({
-      id: doc._id,
-      total: doc.total,
-      exp: doc.exp,
-      level: doc.level,
-    }));
+    const userDocs = await this.userModel.find().exec();
+    return userDocs.length > 0
+      ? userDocs.map((doc) => ({
+          id: doc._id,
+          total: doc.total,
+          exp: doc.exp,
+          level: doc.level,
+        }))
+      : undefined;
   }
 
   async findById(id: string): Promise<User> {
