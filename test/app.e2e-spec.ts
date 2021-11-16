@@ -2,6 +2,7 @@ import { Test, TestingModule } from '@nestjs/testing';
 import { INestApplication } from '@nestjs/common';
 import request from 'supertest';
 import { AppModule } from './../src/app.module';
+import { connection } from 'mongoose';
 
 describe('AppController (e2e)', () => {
   let app: INestApplication;
@@ -29,8 +30,10 @@ describe('AppController (e2e)', () => {
   });
 
   afterAll((done) => {
+    console.log('close');
+    connection.close();
     app.close();
-    // Closing the DB connection allows Jest to exit successfully.
     done();
+    setTimeout(() => process.exit(), 1000);
   });
 });
