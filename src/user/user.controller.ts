@@ -1,11 +1,14 @@
+import { UsersRes, UserRes } from './../interfaces/res.interface';
 import {
   Controller,
   Get,
   Param,
   NotFoundException,
   UseInterceptors,
+  NotAcceptableException,
+  ParseIntPipe,
+  HttpStatus,
 } from '@nestjs/common';
-import { User } from '../interfaces/user.interface';
 import { LoggingInterceptor } from '../logging.interceptor';
 import { UserService } from './user.service';
 
@@ -15,7 +18,7 @@ export class UserController {
 
   @UseInterceptors(LoggingInterceptor)
   @Get('')
-  async getAll(): Promise<User[]> {
+  async getAll(): Promise<UsersRes> {
     const result = await this.userService.getAll();
     if (result) {
       return result;
@@ -29,7 +32,8 @@ export class UserController {
   async findUser(
     @Param('id')
     id: string,
-  ): Promise<User> {
+  ): Promise<UserRes> {
+    if (!id) throw new NotAcceptableException();
     const result = await this.userService.findById(id);
     if (result) {
       return result;
@@ -41,14 +45,24 @@ export class UserController {
   @UseInterceptors(LoggingInterceptor)
   @Get('/day/:day')
   async findDay(
-    @Param('day')
+    @Param(
+      'day',
+      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
+    )
     day: number,
-  ): Promise<User[]> {
+  ): Promise<UsersRes> {
+    if (!day) throw new NotAcceptableException();
     const result = await this.userService.findByDay(day);
     if (result) {
       return result;
     } else {
       throw new NotFoundException();
     }
+  }
+
+  @UseInterceptors(LoggingInterceptor)
+  @Get('/*')
+  async else() {
+    throw new NotFoundException();
   }
 }
