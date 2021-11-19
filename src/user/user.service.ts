@@ -16,6 +16,10 @@ export class UserService {
           total: doc.total,
           exp: doc.exp,
           level: doc.level,
+          voice: doc.voice,
+          messages: doc.messages,
+          channels: doc.channels,
+          server: doc.server,
         }))
       : undefined;
   }
@@ -28,6 +32,10 @@ export class UserService {
           total: user.total,
           exp: user.exp,
           level: user.level,
+          voice: user.voice,
+          messages: user.messages,
+          server: user.server,
+          channels: user.channels,
         }
       : undefined;
   }
