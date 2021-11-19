@@ -13,7 +13,8 @@ import { UserService } from './user.service';
 export class UserController {
   constructor(private userService: UserService) {}
 
-  @Get('/id')
+  @UseInterceptors(LoggingInterceptor)
+  @Get('')
   async getAll(): Promise<User[]> {
     const result = await this.userService.getAll();
     if (result) {
@@ -30,7 +31,20 @@ export class UserController {
     id: string,
   ): Promise<User> {
     const result = await this.userService.findById(id);
-    console.log(result);
+    if (result) {
+      return result;
+    } else {
+      throw new NotFoundException();
+    }
+  }
+
+  @UseInterceptors(LoggingInterceptor)
+  @Get('/day/:day')
+  async findDay(
+    @Param('day')
+    day: number,
+  ): Promise<User[]> {
+    const result = await this.userService.findByDay(day);
     if (result) {
       return result;
     } else {

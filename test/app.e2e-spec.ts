@@ -23,7 +23,32 @@ describe('AppController (e2e)', () => {
     return request(app.getHttpServer())
       .get('/user/id/852929737529884692')
       .expect(200)
-      .expect({ id: '852929737529884692', total: 30, exp: 169, level: 0 });
+      .expect({
+        id: '852929737529884692',
+        total: 30,
+        exp: 169,
+        level: 0,
+        voice: [],
+        messages: {
+          message: [],
+          updated: [],
+          deleted: [],
+          links: [],
+          bot: [],
+          stickers: [],
+          emojis: [],
+          reactions: [],
+          mentions: [],
+          mentionsBy: [],
+        },
+        server: {
+          join: [],
+          leave: [],
+          invites: [],
+        },
+        channels: [],
+        updates: [],
+      });
   });
   it('/ (GET)', () => {
     return request(app.getHttpServer()).get('/user/id/0').expect(404);

@@ -16,6 +16,11 @@ export class UserService {
           total: doc.total,
           exp: doc.exp,
           level: doc.level,
+          voice: doc.voice,
+          messages: doc.messages,
+          channels: doc.channels,
+          server: doc.server,
+          updates: doc.updates,
         }))
       : undefined;
   }
@@ -28,7 +33,33 @@ export class UserService {
           total: user.total,
           exp: user.exp,
           level: user.level,
+          voice: user.voice,
+          messages: user.messages,
+          server: user.server,
+          channels: user.channels,
+          updates: user.updates,
         }
       : undefined;
+  }
+
+  async findByDay(day: number): Promise<User[]> {
+    const results = [];
+    const datas = await this.getAll();
+    datas.forEach((a) => {
+      const currentDate = new Date();
+      if (a.updates) {
+        a.updates.find((update) => {
+          const date = new Date(update);
+          if (
+            date.getFullYear() == currentDate.getFullYear() &&
+            date.getMonth() == currentDate.getMonth() &&
+            date.getDate() == day
+          ) {
+            results.push(a);
+          }
+        });
+      }
+    });
+    return results;
   }
 }
