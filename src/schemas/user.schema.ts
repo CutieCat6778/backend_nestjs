@@ -39,4 +39,5 @@ export const UserSchema = new Schema({
       times: [Date],
     },
   ],
+  updates: [Date],
 });

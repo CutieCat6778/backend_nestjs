@@ -47,6 +47,7 @@ describe('AppController (e2e)', () => {
           invites: [],
         },
         channels: [],
+        updates: [],
       });
   });
   it('/ (GET)', () => {

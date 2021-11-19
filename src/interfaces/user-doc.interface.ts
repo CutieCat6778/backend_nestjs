@@ -39,4 +39,5 @@ export interface UserDoc extends Document {
   voice: Voice[];
   server: Server;
   channels: Channels[];
+  updates: string[];
 }

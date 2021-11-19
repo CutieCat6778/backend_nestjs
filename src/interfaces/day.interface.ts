@@ -12,30 +12,23 @@ interface Messages {
   stickers: string[];
   mentions: Mentions[];
 }
-
 interface Voice {
   data: string;
   total: number;
 }
-
 interface Server {
   leave: string[];
   join: string[];
   invites: string[];
 }
-
 interface Channels {
   _id: string;
   times: string[];
 }
-export interface User {
-  id: string;
-  total: number;
-  exp: number;
-  level: number;
-  messages: Messages;
+
+export interface Day {
   voice: Voice[];
+  messages: Messages[];
   server: Server;
   channels: Channels[];
-  updates: string[];
 }
