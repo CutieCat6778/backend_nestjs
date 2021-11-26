@@ -10,6 +10,7 @@ import { AppService } from './app.service';
 import { UserModule } from './user/user.module';
 import { LoggerMiddleware } from './logger.middleware';
 import { MongooseModule } from '@nestjs/mongoose';
+import { ChannelsModule } from './channels/channels.module';
 
 @Module({
   imports: [
@@ -20,6 +21,7 @@ import { MongooseModule } from '@nestjs/mongoose';
     MongooseModule.forRoot(
       'mongodb+srv://Developers:23072006@discordbot-trademark.p1wmj.mongodb.net/Guild?retryWrites=true&w=majority',
     ),
+    ChannelsModule,
   ],
   controllers: [AppController],
   providers: [AppService],

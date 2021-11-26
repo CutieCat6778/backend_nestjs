@@ -12,9 +12,9 @@ export class AppController {
 
   @Get()
   @HttpCode(200)
-  getHello(): number {
+  getHello() {
     const result = this.appService.returnOk();
-    if (result == 200) {
+    if (result) {
       return result;
     } else {
       throw new NotAcceptableException();
