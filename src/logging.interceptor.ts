@@ -9,12 +9,12 @@ import { Observable, tap } from 'rxjs';
 @Injectable()
 export class LoggingInterceptor implements NestInterceptor {
   intercept(context: ExecutionContext, next: CallHandler): Observable<any> {
-    console.time();
+    console.time('request');
 
     return next.handle().pipe(
       tap(() => {
         console.log('Request took');
-        console.timeEnd();
+        console.timeEnd('request');
       }),
     );
   }

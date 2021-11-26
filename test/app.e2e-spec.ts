@@ -34,6 +34,9 @@ describe('AppController (e2e)', () => {
     return request(app.getHttpServer()).get('/user/day/20').expect(200);
   });
   it('/ (GET)', () => {
+    return request(app.getHttpServer()).get('/user/days/19,20,21').expect(200);
+  });
+  it('/ (GET)', () => {
     return request(app.getHttpServer()).get('/user/day/abc').expect(406);
   });
   it('/ (GET)', () => {
@@ -41,6 +44,30 @@ describe('AppController (e2e)', () => {
   });
   it('/ (GET)', () => {
     return request(app.getHttpServer()).get('/user/id/0').expect(404);
+  });
+
+  it('/ (GET)', () => {
+    return request(app.getHttpServer()).get('/channels/something').expect(404);
+  });
+  it('/ (GET)', () => {
+    return request(app.getHttpServer()).get('/channels/id/abc').expect(200);
+  });
+  it('/ (GET)', () => {
+    return request(app.getHttpServer()).get('/channels/day/20').expect(200);
+  });
+  it('/ (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/channels/days/19,20,21')
+      .expect(200);
+  });
+  it('/ (GET)', () => {
+    return request(app.getHttpServer()).get('/channels/day/abc').expect(406);
+  });
+  it('/ (GET)', () => {
+    return request(app.getHttpServer()).get('/channels').expect(404);
+  });
+  it('/ (GET)', () => {
+    return request(app.getHttpServer()).get('/channels/id/0').expect(200);
   });
 
   afterAll((done) => {
