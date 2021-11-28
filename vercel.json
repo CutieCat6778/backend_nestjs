@@ -1,8 +1,5 @@
 {
   "version": 2,
-  "env": {
-      "TOKEN": "@TOKEN"
-  },
   "builds": [
       {
           "src": "src/main.ts",
