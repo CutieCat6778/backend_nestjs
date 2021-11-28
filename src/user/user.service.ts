@@ -1,8 +1,11 @@
+import { getUserData } from '../utils/getUserData';
+import { UserAPIRes } from './../interfaces/res.interface';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserRes, UsersRes } from 'src/interfaces/res.interface';
 import { UserDoc } from 'src/interfaces/user-doc.interface';
+import { User } from 'src/interfaces/user.interface';
 
 @Injectable()
 export class UserService {
@@ -38,8 +41,10 @@ export class UserService {
       const currentDate = new Date();
       const user = await this.userModel.findOne({ _id: id }).exec();
       if (!user) return undefined;
-      const results = {
+      const userData: UserAPIRes = await getUserData(id);
+      const results: User = {
         id: user._id,
+        details: userData,
         total: user.total,
         exp: user.exp,
         level: user.level,

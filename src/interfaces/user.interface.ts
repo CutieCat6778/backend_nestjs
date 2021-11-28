@@ -1,3 +1,5 @@
+import { UserAPIRes } from './res.interface';
+
 interface Mentions {
   _id: string;
   times: string[];
@@ -30,6 +32,7 @@ interface Channels {
 }
 export interface User {
   id: string;
+  details?: UserAPIRes;
   total: number;
   exp: number;
   level: number;
