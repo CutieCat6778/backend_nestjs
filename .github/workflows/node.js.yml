@@ -17,14 +17,14 @@ jobs:
         node: [ '12', '13','14']
     name: Node ${{ matrix.node }} run
     steps:
-      env:
-        TOKEN: ${{ secrets.TOKEN }}
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v2
       with:
         node-version: '14'
         cache: 'npm'    
         cache-dependency-path: package-lock.json
+      env:
+        TOKEN: ${{ secrets.TOKEN }}
     - run: npm install
     - run: npm test
     - run: npm run test:e2e
