@@ -1,8 +1,11 @@
+import { UserAPIRes } from './../interfaces/res.interface';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserRes, UsersRes } from 'src/interfaces/res.interface';
 import { UserDoc } from 'src/interfaces/user-doc.interface';
+import { User } from 'src/interfaces/user.interface';
+import { getUserData } from 'src/utils/getUserData';
 
 @Injectable()
 export class UserService {
@@ -36,10 +39,12 @@ export class UserService {
   async findById(id: string): Promise<UserRes> {
     try {
       const currentDate = new Date();
+      const userData: UserAPIRes = await getUserData(id);
       const user = await this.userModel.findOne({ _id: id }).exec();
       if (!user) return undefined;
-      const results = {
+      const results: User = {
         id: user._id,
+        details: userData,
         total: user.total,
         exp: user.exp,
         level: user.level,
