@@ -23,8 +23,7 @@ jobs:
         node-version: '14'
         cache: 'npm'    
         cache-dependency-path: package-lock.json
-      env:
-        TOKEN: ${{ secrets.TOKEN }}
+        envkey_TOKEN: ${{ secrets.TOKEN }}
     - run: npm install
     - run: npm test
     - run: npm run test:e2e
