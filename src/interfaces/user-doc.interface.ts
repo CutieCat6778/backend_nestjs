@@ -2,16 +2,16 @@ import { Document } from 'mongoose';
 
 interface Mentions {
   _id: string;
-  times: string[];
+  times: Date[];
 }
 
 interface Messages {
-  message: string[];
-  updated: string[];
-  deleted: string[];
-  links: string[];
-  bot: string[];
-  stickers: string[];
+  message: Date[];
+  updated: Date[];
+  deleted: Date[];
+  links: Date[];
+  bot: Date[];
+  stickers: Date[];
   mentions: Mentions[];
 }
 
@@ -21,14 +21,14 @@ interface Voice {
 }
 
 interface Server {
-  leave: string[];
-  join: string[];
-  invites: string[];
+  leave: Date[];
+  join: Date[];
+  invites: Date[];
 }
 
 interface Channels {
   _id: string;
-  times: string[];
+  times: Date[];
 }
 
 export interface UserDoc extends Document {
@@ -39,5 +39,5 @@ export interface UserDoc extends Document {
   voice: Voice[];
   server: Server;
   channels: Channels[];
-  updates: string[];
+  updates: Date[];
 }
