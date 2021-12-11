@@ -11,6 +11,7 @@ import { UserModule } from './user/user.module';
 import { LoggerMiddleware } from './logger.middleware';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ChannelsModule } from './channels/channels.module';
+import { MessagesModule } from './messages/messages.module';
 
 @Module({
   imports: [
@@ -22,6 +23,7 @@ import { ChannelsModule } from './channels/channels.module';
       'mongodb+srv://Developers:23072006@discordbot-trademark.p1wmj.mongodb.net/Guild?retryWrites=true&w=majority',
     ),
     ChannelsModule,
+    MessagesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
