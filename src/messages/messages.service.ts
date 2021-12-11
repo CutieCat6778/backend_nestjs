@@ -3,6 +3,23 @@ import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
 import { UserDoc } from 'src/interfaces/user-doc.interface';
 
+declare global {
+  interface Date {
+    getWeek(start?: number): [Date, Date];
+  }
+}
+
+Date.prototype.getWeek = function (start: number) {
+  start = start || 0;
+  const today = new Date(this.setHours(0, 0, 0, 0));
+  const day = today.getDay() - start;
+  const date = today.getDate() - day;
+
+  const StartDate = new Date(today.setDate(date));
+  const EndDate = new Date(today.setDate(date + 6));
+  return [StartDate, EndDate];
+};
+
 @Injectable()
 export class MessagesService {
   constructor(@InjectModel('Levels') private userModel: Model<UserDoc>) {}
@@ -17,10 +34,10 @@ export class MessagesService {
       const date1 = new Date();
       const date = new Date();
       !day ? null : date.setDate(day);
-      !month ? null : date.setMonth(month);
+      !month ? null : date.setMonth(month - 1);
       !year ? null : date.setFullYear(year);
-      const dateStart = new Date(date.setHours(0, 0, 0));
-      const dateEnd = new Date(date.setHours(23, 59, 59));
+      const dateStart = new Date(date.setHours(1, 0, 0));
+      const dateEnd = new Date(date.setHours(24, 59, 59));
       console.log(dateStart, dateEnd);
       const users = await this.userModel
         .find({

@@ -8,7 +8,7 @@ import {
   ParseIntPipe,
   UseInterceptors,
 } from '@nestjs/common';
-import { LoggingInterceptor } from 'src/logging.interceptor';
+import { LoggingInterceptor } from '../logging.interceptor';
 import { MessagesService } from './messages.service';
 
 @Controller('messages')

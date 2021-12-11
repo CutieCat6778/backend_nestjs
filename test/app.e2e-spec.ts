@@ -69,6 +69,27 @@ describe('AppController (e2e)', () => {
   it('/ (GET)', () => {
     return request(app.getHttpServer()).get('/channels/id/0').expect(200);
   });
+  it('/ (GET)', () => {
+    return request(app.getHttpServer()).get('/messages/9/12').expect(200);
+  });
+  it('/ (GET)', () => {
+    return request(app.getHttpServer()).get('/messages').expect(200);
+  });
+  it('/ (GET)', () => {
+    return request(app.getHttpServer()).get('/messages/9').expect(200);
+  });
+  it('/ (GET)', () => {
+    return request(app.getHttpServer()).get('/messages/abc').expect(406);
+  });
+  it('/ (GET)', () => {
+    return request(app.getHttpServer()).get('/messages/30').expect(404);
+  });
+  it('/ (GET)', () => {
+    return request(app.getHttpServer()).get('/messages/9/12/2021').expect(200);
+  });
+  it('/ (GET)', () => {
+    return request(app.getHttpServer()).get('/messages/week').expect(200);
+  });
 
   afterAll((done) => {
     console.log('close');
