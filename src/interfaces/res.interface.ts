@@ -1,4 +1,4 @@
-import { User } from 'src/interfaces/user.interface';
+import { User } from './user.interface';
 export interface UserRes {
   data: User;
   time: number;

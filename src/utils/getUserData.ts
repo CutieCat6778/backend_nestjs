@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { UserAPIRes } from 'src/interfaces/res.interface';
+import { UserAPIRes } from '../interfaces/res.interface';
 import { resolveAvatar } from './resolveAvatar';
 
 export async function getUserData(id: string): Promise<UserAPIRes> {

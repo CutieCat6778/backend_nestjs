@@ -8,7 +8,7 @@ import {
   ParseIntPipe,
   UseInterceptors,
 } from '@nestjs/common';
-import { VoiceRes } from 'src/interfaces/res.interface';
+import { VoiceRes } from '../interfaces/res.interface';
 import { VoicesService } from './voices.service';
 import { LoggingInterceptor } from '../logging.interceptor';
 

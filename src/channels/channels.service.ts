@@ -1,12 +1,8 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import {
-  ChannelsRes,
-  UsersRes,
-  ChannelRes,
-} from 'src/interfaces/res.interface';
-import { UserDoc } from 'src/interfaces/user-doc.interface';
+import { ChannelsRes, UsersRes, ChannelRes } from '../interfaces/res.interface';
+import { UserDoc } from '../interfaces/user-doc.interface';
 import ChannelsData from '../../asset/channels.json';
 @Injectable()
 export class ChannelsService {

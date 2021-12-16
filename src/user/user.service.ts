@@ -3,9 +3,9 @@ import { UserAPIRes } from './../interfaces/res.interface';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { UserRes } from 'src/interfaces/res.interface';
-import { UserDoc } from 'src/interfaces/user-doc.interface';
-import { User } from 'src/interfaces/user.interface';
+import { UserRes } from '../interfaces/res.interface';
+import { UserDoc } from '../interfaces/user-doc.interface';
+import { User } from '../interfaces/user.interface';
 
 @Injectable()
 export class UserService {
