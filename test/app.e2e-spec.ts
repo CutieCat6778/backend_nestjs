@@ -55,7 +55,7 @@ describe('AppController (e2e)', () => {
     return request(app.getHttpServer()).get('/channels').expect(404);
   });
   it('/ (GET)', () => {
-    return request(app.getHttpServer()).get('/channels/id/0').expect(200);
+    return request(app.getHttpServer()).get('/channels/id/0').expect(404);
   });
   it('/ (GET)', () => {
     return request(app.getHttpServer()).get('/messages/16/12').expect(200);
