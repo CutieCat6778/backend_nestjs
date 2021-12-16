@@ -21,7 +21,7 @@ describe('AppController (e2e)', () => {
   });
   it('/ (GET)', () => {
     return request(app.getHttpServer())
-      .get('/user/id/852929737529884692')
+      .get('/user/id/762749432658788384')
       .expect(200);
   });
   it('/ (GET)', () => {
