@@ -1,7 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { UserDoc } from 'src/interfaces/user-doc.interface';
+import { UserDoc } from '../interfaces/user-doc.interface';
 
 @Injectable()
 export class MessagesService {

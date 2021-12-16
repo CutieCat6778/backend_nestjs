@@ -2,9 +2,9 @@ import { VoicesRes } from './../interfaces/res.interface';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { UserAPIRes, VoiceRes } from 'src/interfaces/res.interface';
-import { UserDoc } from 'src/interfaces/user-doc.interface';
-import { getUserData } from 'src/utils/getUserData';
+import { UserAPIRes, VoiceRes } from '../interfaces/res.interface';
+import { UserDoc } from '../interfaces/user-doc.interface';
+import { getUserData } from '../utils/getUserData';
 
 @Injectable()
 export class VoicesService {
