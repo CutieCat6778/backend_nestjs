@@ -4,7 +4,7 @@ import { Model } from 'mongoose';
 import { UserDoc } from 'src/interfaces/user-doc.interface';
 
 @Injectable()
-export class MessagesService {
+export class UpdateService {
   constructor(@InjectModel('Levels') private userModel: Model<UserDoc>) {}
 
   resolveDay(day: number, month: number, year: number): Date {
@@ -24,7 +24,7 @@ export class MessagesService {
       console.log(dateStart, dateEnd);
       const users = await this.userModel
         .find({
-          'messages.message': {
+          updates: {
             $gte: dateStart,
             $lte: dateEnd,
           },
@@ -32,7 +32,7 @@ export class MessagesService {
         .exec();
       const results = users.map((a) => ({
         id: a._id,
-        time: a.messages.message.filter((b) => b >= dateStart && b <= dateEnd),
+        time: a.updates.filter((b) => b >= dateStart && b <= dateEnd),
       }));
       const timeTook = new Date().getTime() - date1.getTime();
       return users.length > 0 ? { data: results, time: timeTook } : undefined;
@@ -51,7 +51,7 @@ export class MessagesService {
       console.log(dateStart, dateEnd);
       const users = await this.userModel
         .find({
-          'messages.message': {
+          updates: {
             $gte: dateStart,
             $lte: dateEnd,
           },
@@ -59,7 +59,7 @@ export class MessagesService {
         .exec();
       const results = users.map((a) => ({
         id: a._id,
-        time: a.messages.message.filter((b) => b >= dateStart && b <= dateEnd),
+        time: a.updates.filter((b) => b >= dateStart && b <= dateEnd),
       }));
       const timeTook = new Date().getTime() - date.getTime();
       return users.length > 0 ? { data: results, time: timeTook } : undefined;
