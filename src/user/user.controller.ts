@@ -1,4 +1,4 @@
-import { UsersRes, UserRes } from './../interfaces/res.interface';
+import { UserRes } from './../interfaces/res.interface';
 import {
   Controller,
   Get,
@@ -6,8 +6,6 @@ import {
   NotFoundException,
   UseInterceptors,
   NotAcceptableException,
-  ParseIntPipe,
-  HttpStatus,
   InternalServerErrorException,
 } from '@nestjs/common';
 import { LoggingInterceptor } from '../logging.interceptor';
@@ -18,21 +16,7 @@ export class UserController {
   constructor(private userService: UserService) {}
 
   @UseInterceptors(LoggingInterceptor)
-  @Get('')
-  async getAll(): Promise<UsersRes> {
-    const result = await this.userService.getAll();
-    if (result) {
-      if (result.time === 0) {
-        throw new InternalServerErrorException(result.data);
-      }
-      return result;
-    } else {
-      throw new NotFoundException();
-    }
-  }
-
-  @UseInterceptors(LoggingInterceptor)
-  @Get('/id/:id')
+  @Get('/:id')
   async findUser(
     @Param('id')
     id: string,
@@ -50,48 +34,14 @@ export class UserController {
   }
 
   @UseInterceptors(LoggingInterceptor)
-  @Get('/day/:day')
-  async findDay(
-    @Param(
-      'day',
-      new ParseIntPipe({ errorHttpStatusCode: HttpStatus.NOT_ACCEPTABLE }),
-    )
-    day: number,
-  ): Promise<UsersRes> {
-    if (!day) throw new NotAcceptableException();
-    const result = await this.userService.findByDay(day);
-    if (result) {
-      if (result.time === 0) {
-        throw new InternalServerErrorException(result.data);
-      }
-      return result;
-    } else {
-      throw new NotFoundException();
-    }
-  }
-
-  @UseInterceptors(LoggingInterceptor)
-  @Get('/days/:days')
-  async findDays(
-    @Param('days')
-    day: string,
-  ): Promise<UsersRes> {
-    if (!day) throw new NotAcceptableException();
-    const days = day.split(',').map((a) => parseInt(a));
-    const result = await this.userService.findByDays(days);
-    if (result) {
-      if (result.time === 0) {
-        throw new InternalServerErrorException(result.data);
-      }
-      return result;
-    } else {
-      throw new NotFoundException();
-    }
-  }
-
-  @UseInterceptors(LoggingInterceptor)
   @Get('/*')
   async else() {
+    throw new NotFoundException();
+  }
+
+  @UseInterceptors(LoggingInterceptor)
+  @Get('')
+  async root() {
     throw new NotFoundException();
   }
 }

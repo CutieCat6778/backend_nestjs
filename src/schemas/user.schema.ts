@@ -7,7 +7,7 @@ export const UserSchema = new Schema({
   level: Number,
   voice: [
     {
-      data: Date,
+      date: Date,
       total: Number,
     },
   ],

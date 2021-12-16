@@ -16,7 +16,7 @@ interface Messages {
 }
 
 interface Voice {
-  data: string;
+  date: string;
   total: number;
 }
 

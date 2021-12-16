@@ -21,12 +21,6 @@ export class ChannelsController {
   constructor(private channelsService: ChannelsService) {}
 
   @UseInterceptors(LoggingInterceptor)
-  @Get('')
-  async getAll(): Promise<ChannelsRes> {
-    throw new NotFoundException();
-  }
-
-  @UseInterceptors(LoggingInterceptor)
   @Get('/id/:id')
   async findUser(
     @Param('id')

@@ -13,7 +13,7 @@ interface Messages {
   mentions: Mentions[];
 }
 interface Voice {
-  data: string;
+  date: string;
   total: number;
 }
 interface Server {

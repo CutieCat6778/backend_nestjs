@@ -12,6 +12,8 @@ import { LoggerMiddleware } from './logger.middleware';
 import { MongooseModule } from '@nestjs/mongoose';
 import { ChannelsModule } from './channels/channels.module';
 import { MessagesModule } from './messages/messages.module';
+import { VoicesModule } from './voices/voices.module';
+import { UpdateModule } from './update/update.module';
 
 @Module({
   imports: [
@@ -24,6 +26,8 @@ import { MessagesModule } from './messages/messages.module';
     ),
     ChannelsModule,
     MessagesModule,
+    VoicesModule,
+    UpdateModule,
   ],
   controllers: [AppController],
   providers: [AppService],

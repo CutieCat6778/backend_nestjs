@@ -9,8 +9,14 @@ export interface UsersRes {
   time: number;
 }
 interface Channel {
+  times: Date[];
   id: string;
-  times: string[];
+  name: string;
+  createdAt: string;
+  parent?: string;
+  position: number;
+  description?: string;
+  type: string;
 }
 
 export interface ChannelsRes {
@@ -19,7 +25,7 @@ export interface ChannelsRes {
 }
 
 export interface ChannelRes {
-  data: string[];
+  data: Channel;
   time: number;
 }
 
@@ -38,4 +44,24 @@ export interface UserAPIRes {
   premium_type: number;
   publig_flags: number;
   verified: boolean;
+}
+
+interface Voice {
+  total: number;
+  date: string;
+}
+
+interface UserVoice {
+  voices: Voice[];
+  userData: UserAPIRes;
+}
+
+export interface VoiceRes {
+  date: UserVoice;
+  time: number;
+}
+
+export interface VoicesRes {
+  data: UserVoice[];
+  time: number;
 }
