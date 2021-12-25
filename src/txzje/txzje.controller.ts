@@ -20,11 +20,10 @@ export class TxzjeController {
           Accept: 'application/json',
           'Content-Type': 'application/json',
           Authorization:
-            'Bearer BQDlSbmizOlU16rjV_R7fDfLCz7eAEvJTGQOsrCM8HbsME2OEmH7xUv6UcdosFuw30QuWwVjycT_c4MoVhvjfG0ggIsRiV-vvGcDgLDxF4v01KZI82nTeiqT2kf6vl1I8Dd-jOn3vXtkYTGV4RCd8iitYk7oqygZVKk5ePtt"',
+            'Bearer BQBPme6RK1Jde68jjZN_w5caiF1XLIxwHVYJpPqT_CEMuPQtI3UcB-qMplbCBSEAQybkZKr7NdwNOFi766ZAiCFHtM9ctHkdwuzan-FRnHHUkT944jX9Dk_VuGLbjaRG7fDvXbZ0OTxp2DHDUMaY3lHLtUYMTq4Aa76q5h3a',
         },
       },
     );
-    console.log(data.item.id);
     const id = data.item.id;
     if (id) {
       const res = await axios.get(`https://api.spotify.com/v1/tracks/${id}`, {
@@ -32,10 +31,9 @@ export class TxzjeController {
           Accept: 'application/json',
           'Content-Type': 'application/json',
           Authorization:
-            'Bearer BQDlSbmizOlU16rjV_R7fDfLCz7eAEvJTGQOsrCM8HbsME2OEmH7xUv6UcdosFuw30QuWwVjycT_c4MoVhvjfG0ggIsRiV-vvGcDgLDxF4v01KZI82nTeiqT2kf6vl1I8Dd-jOn3vXtkYTGV4RCd8iitYk7oqygZVKk5ePtt"',
+            'Bearer BQBPme6RK1Jde68jjZN_w5caiF1XLIxwHVYJpPqT_CEMuPQtI3UcB-qMplbCBSEAQybkZKr7NdwNOFi766ZAiCFHtM9ctHkdwuzan-FRnHHUkT944jX9Dk_VuGLbjaRG7fDvXbZ0OTxp2DHDUMaY3lHLtUYMTq4Aa76q5h3a',
         },
       });
-      console.log(res.data);
       result = {
         name: res.data.name,
         image: res.data.album?.images[1]?.url

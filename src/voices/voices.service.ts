@@ -73,11 +73,9 @@ export class VoicesService {
   async getWeek(): Promise<VoicesRes> {
     const date = new Date();
     const week = date.getWeek();
-    console.log(week);
     try {
       const dateStart = new Date(week[0]);
       const dateEnd = new Date(week[1]);
-      console.log(dateStart, dateEnd);
       const users = await this.userModel
         .find({
           voice: {

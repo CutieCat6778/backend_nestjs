@@ -40,7 +40,6 @@ export class ChannelsService {
     !year ? null : date.setFullYear(year);
     const dateStart = new Date(date.setHours(1, 0, 0));
     const dateEnd = new Date(date.setHours(24, 59, 59));
-    console.log(dateStart, dateEnd);
     const datas = await this.userModel
       .find({
         updates: {
@@ -85,7 +84,6 @@ export class ChannelsService {
     !year ? null : date.setFullYear(year);
     const dateStart = new Date(date.setHours(1, 0, 0));
     const dateEnd = new Date(date.setDate(Math.max(...day) + 1));
-    console.log(dateStart, dateEnd);
     const datas = await this.userModel
       .find({
         updates: {
