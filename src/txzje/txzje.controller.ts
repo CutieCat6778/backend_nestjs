@@ -5,7 +5,7 @@ import {
   UseInterceptors,
 } from '@nestjs/common';
 import axios from 'axios';
-import { LoggingInterceptor } from 'src/logging.interceptor';
+import { LoggingInterceptor } from '../logging.interceptor';
 
 @Controller('txzje')
 export class TxzjeController {
