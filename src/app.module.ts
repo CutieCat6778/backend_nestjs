@@ -1,4 +1,3 @@
-import { ConfigModule } from '@nestjs/config';
 import {
   MiddlewareConsumer,
   Module,
@@ -14,12 +13,12 @@ import { ChannelsModule } from './channels/channels.module';
 import { MessagesModule } from './messages/messages.module';
 import { VoicesModule } from './voices/voices.module';
 import { UpdateModule } from './update/update.module';
+import { RateLimiterModule, RateLimiterGuard } from 'nestjs-rate-limiter';
+import { APP_GUARD } from '@nestjs/core';
+import { TxzjeModule } from './txzje/txzje.module';
 
 @Module({
   imports: [
-    ConfigModule.forRoot({
-      envFilePath: '.env',
-    }),
     UserModule,
     MongooseModule.forRoot(
       'mongodb+srv://Developers:23072006@discordbot-trademark.p1wmj.mongodb.net/Guild?retryWrites=true&w=majority',
@@ -28,14 +27,22 @@ import { UpdateModule } from './update/update.module';
     MessagesModule,
     VoicesModule,
     UpdateModule,
+    RateLimiterModule,
+    TxzjeModule,
   ],
   controllers: [AppController],
-  providers: [AppService],
+  providers: [
+    AppService,
+    {
+      provide: APP_GUARD,
+      useClass: RateLimiterGuard,
+    },
+  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
     consumer
       .apply(LoggerMiddleware)
-      .forRoutes({ path: 'user', method: RequestMethod.GET });
+      .forRoutes({ path: '', method: RequestMethod.GET });
   }
 }

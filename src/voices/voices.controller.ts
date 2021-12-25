@@ -8,13 +8,23 @@ import {
   ParseIntPipe,
   UseInterceptors,
 } from '@nestjs/common';
-import { VoiceRes } from '../interfaces/res.interface';
+import { VoiceRes, VoicesRes } from '../interfaces/res.interface';
 import { VoicesService } from './voices.service';
 import { LoggingInterceptor } from '../logging.interceptor';
 
 @Controller('voices')
 export class VoicesController {
   constructor(private service: VoicesService) {}
+
+  @Get('')
+  async getToday(): Promise<VoicesRes> {
+    const data = await this.service.getByDate();
+    if (data) {
+      return data;
+    } else {
+      throw new NotFoundException();
+    }
+  }
 
   @Get('/id/:id')
   async getId(
