@@ -21,7 +21,6 @@ export class MessagesService {
       !year ? null : date.setFullYear(year);
       const dateStart = new Date(date.setHours(1, 0, 0));
       const dateEnd = new Date(date.setHours(24, 59, 59));
-      console.log(dateStart, dateEnd);
       const users = await this.userModel
         .find({
           'messages.message': {
@@ -44,11 +43,9 @@ export class MessagesService {
   async getWeek(): Promise<any> {
     const date = new Date();
     const week = date.getWeek();
-    console.log(week);
     try {
       const dateStart = new Date(week[0]);
       const dateEnd = new Date(week[1]);
-      console.log(dateStart, dateEnd);
       const users = await this.userModel
         .find({
           'messages.message': {
