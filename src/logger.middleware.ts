@@ -7,6 +7,7 @@ export class LoggerMiddleware implements NestMiddleware {
     console.info('Request....');
     const allowedOrigins = [
       'http://localhost:3000',
+      'http://localhost:3001',
       'http://192.168.1.67:3000',
       'https://frontend-reactjs.vercel.app',
     ];

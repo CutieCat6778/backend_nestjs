@@ -31,7 +31,7 @@ export class VoicesService {
   }
 
   async getByDate(
-    day: number,
+    day?: number,
     month?: number,
     year?: number,
   ): Promise<VoicesRes> {
@@ -56,15 +56,11 @@ export class VoicesService {
         })
         .exec();
 
-      console.log(users);
-
       const results = [];
 
       for (const user of users) {
-        const userData: UserAPIRes = await getUserData(user._id);
         results.push({
           voices: user.voice,
-          userData: userData,
         });
       }
       const timeTook = new Date().getTime() - date1.getTime();
@@ -97,10 +93,8 @@ export class VoicesService {
       const results = [];
 
       for (const user of users) {
-        const userData: UserAPIRes = await getUserData(user._id);
         results.push({
           voices: user.voice,
-          userData: userData,
         });
       }
       const timeTook = new Date().getTime() - date.getTime();
