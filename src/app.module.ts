@@ -15,7 +15,6 @@ import { VoicesModule } from './voices/voices.module';
 import { UpdateModule } from './update/update.module';
 import { RateLimiterModule, RateLimiterGuard } from 'nestjs-rate-limiter';
 import { APP_GUARD } from '@nestjs/core';
-import { TxzjeModule } from './txzje/txzje.module';
 
 @Module({
   imports: [
@@ -28,7 +27,6 @@ import { TxzjeModule } from './txzje/txzje.module';
     VoicesModule,
     UpdateModule,
     RateLimiterModule,
-    TxzjeModule,
   ],
   controllers: [AppController],
   providers: [
