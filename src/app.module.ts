@@ -1,46 +1,24 @@
-import {
-  MiddlewareConsumer,
-  Module,
-  NestModule,
-  RequestMethod,
-} from '@nestjs/common';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
-import { UserModule } from './user/user.module';
-import { LoggerMiddleware } from './logger.middleware';
+import { MiddlewareConsumer, Module, NestModule } from '@nestjs/common';
+import { ConfigModule } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { ChannelsModule } from './channels/channels.module';
-import { MessagesModule } from './messages/messages.module';
-import { VoicesModule } from './voices/voices.module';
-import { UpdateModule } from './update/update.module';
-import { RateLimiterModule, RateLimiterGuard } from 'nestjs-rate-limiter';
-import { APP_GUARD } from '@nestjs/core';
+import { UserModule } from './user/user.module';
+import { CommonModule } from './common/common.module';
+import { AuthModule } from './auth/auth.module';
+import { CorsMiddleware } from './cors.middleware';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [
+    ConfigModule.forRoot(),
+    MongooseModule.forRoot(process.env.MONGO),
     UserModule,
-    MongooseModule.forRoot(
-      'mongodb+srv://Developers:23072006@discordbot-trademark.p1wmj.mongodb.net/Guild?retryWrites=true&w=majority',
-    ),
-    ChannelsModule,
-    MessagesModule,
-    VoicesModule,
-    UpdateModule,
-    RateLimiterModule,
+    CommonModule,
+    AuthModule,
   ],
   controllers: [AppController],
-  providers: [
-    AppService,
-    {
-      provide: APP_GUARD,
-      useClass: RateLimiterGuard,
-    },
-  ],
 })
 export class AppModule implements NestModule {
   configure(consumer: MiddlewareConsumer) {
-    consumer
-      .apply(LoggerMiddleware)
-      .forRoutes({ path: '', method: RequestMethod.GET });
+    consumer.apply(CorsMiddleware).forRoutes('');
   }
 }

@@ -1,44 +1,24 @@
-import { UserAPIRes } from './res.interface';
-
-interface Mentions {
-  _id: string;
-  times: Date[];
-}
-
-interface Messages {
-  message: Date[];
-  updated: Date[];
-  deleted: Date[];
-  links: Date[];
-  bot: Date[];
-  stickers: Date[];
-  mentions: Mentions[];
-}
-
-interface Voice {
-  date: string;
-  total: number;
-}
-
-interface Server {
-  leave: Date[];
-  join: Date[];
-  invites: Date[];
-}
-
-interface Channels {
-  _id: string;
-  times: Date[];
-}
 export interface User {
-  id: string;
-  details?: UserAPIRes;
-  total: number;
-  exp: number;
-  level: number;
-  messages: Messages;
-  voice: Voice[];
-  server: Server;
-  channels: Channels[];
-  updates: Date[];
+  readonly _id: string;
+  readonly username: string;
+  readonly password: string;
+  readonly email: string;
+  readonly tables: string[];
+  readonly createdAt: Date;
+}
+
+export interface Table {
+  readonly _id: string;
+  readonly title: string;
+  readonly type: number;
+  readonly colums: Column[];
+  readonly position: number;
+  readonly createdAt: Date;
+}
+
+export interface Column {
+  readonly _id: string;
+  readonly content: string;
+  readonly position: number;
+  readonly createdAt: Date;
 }

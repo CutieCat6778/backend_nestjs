@@ -1,0 +1,113 @@
+# ------------------------------------------------------
+# THIS FILE WAS AUTOMATICALLY GENERATED (DO NOT MODIFY)
+# ------------------------------------------------------
+
+type UserSecure {
+  _id: String!
+
+  """Username"""
+  username: String!
+
+  """User's email address"""
+  email: String!
+
+  """User's todo tables"""
+  tables: Tables!
+
+  """Creation date"""
+  createdAt: DateTime!
+}
+
+"""
+A date-time string at UTC, such as 2019-12-03T09:54:33Z, compliant with the date-time format.
+"""
+scalar DateTime
+
+type User {
+  _id: String!
+
+  """Username"""
+  username: String!
+
+  """User's password"""
+  password: String!
+
+  """User's email address"""
+  email: String!
+
+  """User's todo tables"""
+  tables: Tables!
+
+  """Creation date"""
+  createdAt: DateTime!
+}
+
+type Columns {
+  _id: String!
+
+  """Content"""
+  content: String!
+
+  """Column's position"""
+  position: Float!
+
+  """Creation Date"""
+  createdAt: DateTime!
+}
+
+type Tables {
+  _id: String!
+
+  """Content"""
+  title: String!
+
+  """Type"""
+  type: String!
+
+  """Columns array"""
+  columns: Columns!
+
+  """Table's position"""
+  position: Float!
+
+  """Creation Date"""
+  createdAt: DateTime!
+}
+
+type LoginResponse {
+  access_token: String!
+  user: UserSecure!
+}
+
+type Query {
+  findAll: [User!]!
+  findUser(username: String!): User!
+}
+
+type Mutation {
+  createUser(createUser: CreateUser!): User!
+  login(loginUserInput: LoginUserInput!): LoginResponse!
+  signup(signupUserInput: SignupUserInput!): User!
+}
+
+input CreateUser {
+  """User's username"""
+  username: String!
+
+  """User's password"""
+  password: String!
+
+  """User's email"""
+  email: String!
+}
+
+input LoginUserInput {
+  username: String!
+  password: String!
+}
+
+input SignupUserInput {
+  username: String!
+  password: String!
+  email: String!
+}

@@ -1,38 +1,44 @@
-import { getUserData } from '../utils/getUserData';
-import { UserAPIRes } from './../interfaces/res.interface';
 import { Injectable } from '@nestjs/common';
 import { InjectModel } from '@nestjs/mongoose';
+import { User, UserDocument } from 'src/schemas/user.schema';
 import { Model } from 'mongoose';
-import { UserRes } from '../interfaces/res.interface';
-import { UserDoc } from '../interfaces/user-doc.interface';
-import { User } from '../interfaces/user.interface';
+import { CreateUser } from 'src/dto/userDto.dto';
 
 @Injectable()
 export class UserService {
-  constructor(@InjectModel('Levels') private userModel: Model<UserDoc>) {}
-  async findById(id: string): Promise<UserRes> {
+  constructor(
+    @InjectModel(User.name) private readonly model: Model<UserDocument>,
+  ) {}
+
+  async createUser(createUserDto: CreateUser): Promise<User> {
+    const user = new this.model(createUserDto);
+    return user.save();
+  }
+
+  async findUser(name: string): Promise<User> {
+    const user = await this.model.findOne({
+      username: name,
+    });
     try {
-      const currentDate = new Date();
-      const user = await this.userModel.findOne({ _id: id }).exec();
-      if (!user) return undefined;
-      const userData: UserAPIRes = await getUserData(id);
-      const results: User = {
-        id: user._id,
-        details: userData,
-        total: user.total,
-        exp: user.exp,
-        level: user.level,
-        voice: user.voice,
-        messages: user.messages,
-        server: user.server,
-        channels: user.channels,
-        updates: user.updates,
-      };
-      const timeTook = new Date().getTime() - currentDate.getTime();
-      return { data: results, time: timeTook };
-    } catch (e) {
-      console.error(e);
-      return { data: e, time: 0 };
+      if (!user) return null;
+    } finally {
+      return user;
     }
+  }
+
+  async findEmail(email: string): Promise<User> {
+    const user = await this.model.findOne({
+      email,
+    });
+    try {
+      if (!user) return null;
+    } finally {
+      return user;
+    }
+  }
+
+  async findAll(): Promise<User[]> {
+    const users = this.model.find();
+    return users;
   }
 }
