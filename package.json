@@ -24,7 +24,7 @@
     "@nestjs/common": "^8.2.1",
     "@nestjs/core": "^8.0.0",
     "@nestjs/mongoose": "^9.0.1",
-    "@nestjs/platform-express": "^8.0.0",
+    "@nestjs/platform-express": "^8.4.7",
     "ajv": "^6.12.6",
     "ajv-keywords": "^5.0.0",
     "axios": "^0.24.0",
